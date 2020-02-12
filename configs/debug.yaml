@@ -1,0 +1,36 @@
+logging:
+    level: INFO
+    use-tensorboard: true
+    image-step: 50
+    value-step: 1
+checkpoint:
+    step: 10000
+model:
+validation:
+    dataloader:
+        datasets:
+            - dtu-mvs
+        data-augmentation:
+            image-width: 320
+            image-height: 240
+            num-augmentations: 1
+    step: 500
+training:
+    optimizer:
+        type: adam
+        learning-rate: 0.001
+    scheduler:
+        step: 10000
+        end: 3000000
+        gamma: 0.99
+    loss:
+        type: bce
+    total-step: 3000000
+    dataloader:
+        datasets:
+            - coco
+            - dtu-mvs
+        data-augmentation:
+            image-width: 320
+            image-height: 240
+            num-augmentations: 1
